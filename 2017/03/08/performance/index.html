@@ -102,7 +102,7 @@ memory字段代表JavaScript对内存的占用。usedJSHeapSize表示所有被�
 <meta property="og:image" content="http://yoursite.com/../images/performance.png">
 <meta property="og:image" content="http://yoursite.com/../images/timing.png">
 <meta property="og:image" content="http://yoursite.com/../images/resource.png">
-<meta property="og:updated_time" content="2017-03-07T16:52:32.283Z">
+<meta property="og:updated_time" content="2017-03-07T16:57:36.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Performance 接口">
 <meta name="twitter:description" content="window.performance 是W3C性能小组引入的新的API，目前IE9以上的浏览器都支持。官方文档请看这里:Performance
@@ -378,7 +378,7 @@ memory字段代表JavaScript对内存的占用。usedJSHeapSize表示所有被�
 <li>onload时间 = loadEventEnd - fetchStart</li>
 </ul>
 <h2 id="Resource-Timing"><a href="#Resource-Timing" class="headerlink" title="Resource Timing"></a>Resource Timing</h2><p>浏览器获取网页时，会对网页中每一个静态资源（脚本文件、样式表、图片文件等等）发出一个HTTP请求。Resource Timing可以获取到单个静态资源从开始发出请求到获取响应之间各个阶段的Timing。用法如下:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> resourcesObj = performance.getEntries();</div><div class="line"><span class="keyword">var</span> resourcesObjByName = performance.getEntriesByName();<span class="comment">//根据资源的名字和类型来获取</span></div><div class="line"><span class="keyword">var</span> resourcesObjByType = performance.getEntriesByType();</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> resourcesObj = performance.getEntries();</div><div class="line"><span class="keyword">var</span> resourcesObjByName = performance.getEntriesByName();<span class="comment">//根据资源的名字和类型来获取</span></div><div class="line"><span class="keyword">var</span> resourcesObjByType = performance.getEntriesByType();</div></pre></td></tr></table></figure>
 <p><img src="../images/resource.png" alt="Alt text" title="resource 接口"> </p>
 <h2 id="Now"><a href="#Now" class="headerlink" title="Now"></a>Now</h2><p>使用 performance.now() 可以精确计算程序执行时间。与 Date.now() 不同的是，performance.now返回了以微秒（百万分之一秒）为单位的时间，更加精准。并且与 Date.now() 会受系统程序执行阻塞的影响不同，performance.now() 的时间是以恒定速率递增的，不受系统时间的影响（系统时间可被人为或软件调整）。注意 Date.now() 输出的是 UNIX 时间，即距离 1970 的时间，而 performance.now() 输出的是相对于 performance.timing.navigationStart(页面初始化) 的时间。比如我们要页面首屏的时间，一般首屏上最后一张图片显示的时间可以看作是首屏展示的时间，我们在最后一张图片加载完成后记录下performance.now就能获得页面从跳转到展示所花费的时间了。如果要计算白屏时间的话，也可以在body的最前面加上performance.now的代码。</p>
 <h2 id="Mark"><a href="#Mark" class="headerlink" title="Mark"></a>Mark</h2><p>使用 performance.mark(‘name’) 标记各种时间戳，记录下的时间戳可以在performance.getEntries()中获得，与一般的资源(PerformanceResourceTiming)不同，mark被标记为PerformanceMark。使用performance.measure可以计算两个mark之间的时间距离，所以mark也可以用来计算程序执行时间。具体示例可以看： <a href="http://web.jobbole.com/83432/" target="_blank">初探 performance – 监控网页与程序性能</a></p>
